@@ -1,16 +1,23 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import DashBoard from "@/views/Dashboard.vue";
+import CreateEvent from "../views/CreateEvent.vue";
 // import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   //default vue setup routes deleted an disabled
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: Home
-  // },
+  {
+    path: "/",
+    name: "Dashboard",
+    component: DashBoard
+  },
+  {
+    path: "/createEvent",
+    name: "Create-Event",
+    component: CreateEvent
+  }
   // {
   //   path: "/about",
   //   name: "About",
