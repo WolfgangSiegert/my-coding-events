@@ -22,11 +22,11 @@
       "location": "https://zoom.us/j/861156*454"
     },
     {
-      "id": 4,
-      "title": "Code & Cook",
-      "details": "Please bring creative recips",
-      "date": "12/07/2020 18:00",
-      "location": "Basislager Coworking, Peterssteinweg 14, Leipzig"
+      "title": "PUTed  Event",
+      "description": "put freshest new event ever",
+      "date": "04/01/2022 00:00",
+      "location": "PUT it in the streets 2",
+      "id": 4
     },
     {
       "id": 5,
@@ -216,6 +216,13 @@
       "details": "Potluck!",
       "date": "06/28/2020 12:46",
       "location": "https://what3words.com/gr%C3%BCn.nahm.studenten"
+    },
+    {
+      "id": 444,
+      "title": "Newly posted Event",
+      "description": "freshest new event ever",
+      "date": "04/01/2020 00:00",
+      "location": "in the streets"
     }
   ]
 }
