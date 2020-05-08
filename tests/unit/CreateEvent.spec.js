@@ -42,4 +42,16 @@ describe("My Create Event Test Suite", () => {
   it("the Form element has an input button with type=submit and showing Create", () => {
     expect(wrapper.contains("input[type='submit'][value='Create']")).toBe(true);
   });
+  // the view's form should have an event data property
+  it("the view's form should have an event data property", () => {
+    expect(wrapper.vm.eventName).toEqual({ title: "" });
+  });
+  test("it should bind the event title to the user input", () => {
+    const wrapper = mount(createEvent);
+    const titleInput = wrapper.get("input[name='title']");
+
+    titleInput.setValue("This is an Event Name TEST_INPUT");
+
+    expect(wrapper.vm.eventName.title).toBe("This is an Event Name TEST_INPUT");
+  });
 });
