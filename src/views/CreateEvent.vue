@@ -24,17 +24,19 @@ export default {
     };
   },
   methods: {
-    submit() {
+    async submit() {
       console.log(this.eventName);
       //alert(this.eventName.title);
-      myAxios
-        .post("http://localhost:3000/events", this.eventName)
-        .then(res => {
-          console.log("Created new Event", res.data);
-        })
-        .catch(error => {
-          console.error("The server call didnt work: ", error);
-        });
+      try {
+        const response = await myAxios.post(
+          "http://localhost:3000/events",
+          this.eventName
+        );
+        console.log("Created new Event", response.data);
+        return response;
+      } catch (error) {
+        console.error("The server call didnt work: ", error);
+      }
     }
   }
 };
