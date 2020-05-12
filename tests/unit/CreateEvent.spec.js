@@ -1,57 +1,96 @@
 import { mount } from "@vue/test-utils";
-import createEvent from "@/views/CreateEvent.vue";
+import CreateEvent from "@/views/CreateEvent.vue";
+import { createEvent } from "@/services/event-service.js";
 
-describe("My Create Event Test Suite", () => {
-  // Now mount the component and you have the wrapper
-  const wrapper = mount(createEvent);
+// Jest wizardry
+jest.mock("@/services/event-service.js");
 
-  // with wrapper.html it's easy to check for the existance an content of elements
-  test("WITH get it renders an h1 Element with the content: Create an Event", () => {
+describe("CreateEvent", () => {
+  test("it has an <h1> heading", () => {
+    const wrapper = mount(CreateEvent);
+
+    expect(wrapper.contains("h1")).toBe(true);
+  });
+
+  test("it has an <h1> heading with a Create an Event text content", () => {
+    const wrapper = mount(CreateEvent);
+
     expect(wrapper.get("h1").text()).toBe("Create an Event");
   });
 
-  // with wrapper.html it's easy to check for the existance and content of elements in DOM style
-  test("it renders an h1 Element with the content: Create an Event", () => {
-    expect(wrapper.html()).toContain("<h1>Create an Event</h1>");
-  });
+  test("it contains a form element", () => {
+    const wrapper = mount(CreateEvent);
 
-  // it's also easy to check for the existence of elements
-  it("has an h1 element", () => {
-    expect(wrapper.contains("h1")).toBe(true);
-  });
-  // the view has to have a form element
-  it("has a Form element", () => {
     expect(wrapper.contains("form")).toBe(true);
   });
-  // the view's form has to have a title input field
-  it("the Form element has an input with name=title and type=text", () => {
-    expect(wrapper.contains("input[type='text'][name='title']")).toBe(true);
+
+  test("it should contain a title input field", () => {
+    const wrapper = mount(CreateEvent);
+
+    expect(wrapper.contains("input[name='title'][type='text']")).toBe(true);
   });
-  // the view's form title input field should have a placeholder saying
-  it("the view's form title input field should have a placeholder saying: ", () => {
+
+  test("it should contain a submit button with the value Create", () => {
+    const wrapper = mount(CreateEvent);
+
+    expect(wrapper.contains("input[value='Create'][type='submit']")).toBe(true);
+  });
+
+  test("it should contain an input field for the title with the placeholder 'Add a Title'", () => {
+    const wrapper = mount(CreateEvent);
+
     const titleInput = wrapper.get("input[name='title']");
-    expect(
-      //   wrapper.contains(
-      //     "input[type='text'][name='title'][placeholder='Add an Event Name']"
-      //   )
-      // ).toBe(true);
-      titleInput.attributes().placeholder
-    ).toBe("Add an Event Name");
+
+    expect(titleInput.attributes("placeholder")).toBe("Add a Title");
   });
-  // the view should have a submit button
-  it("the Form element has an input button with type=submit and showing Create", () => {
-    expect(wrapper.contains("input[type='submit'][value='Create']")).toBe(true);
+
+  test("it should have an event data property", () => {
+    const wrapper = mount(CreateEvent);
+
+    expect(wrapper.vm.event).toEqual({
+      title: "",
+    });
   });
-  // the view's form should have an event data property
-  it("the view's form should have an event data property", () => {
-    expect(wrapper.vm.eventName).toEqual({ title: "" });
-  });
+
   test("it should bind the event title to the user input", () => {
-    const wrapper = mount(createEvent);
+    const wrapper = mount(CreateEvent);
+
     const titleInput = wrapper.get("input[name='title']");
 
-    titleInput.setValue("This is an Event Name TEST_INPUT");
+    titleInput.setValue("JS Pair Programming Session");
 
-    expect(wrapper.vm.eventName.title).toBe("This is an Event Name TEST_INPUT");
+    expect(wrapper.vm.event.title).toBe("JS Pair Programming Session");
+  });
+
+  test("it should have a submit method", () => {
+    const wrapper = mount(CreateEvent);
+
+    expect(wrapper.vm.submit).toBeDefined();
+    expect(typeof wrapper.vm.submit).toBe("function");
+  });
+
+  test("it should call the submit method on a submit event on the form", () => {
+    const wrapper = mount(CreateEvent);
+
+    // Add a spy mock function, overriding my method
+    wrapper.vm.submit = jest.fn();
+    // Triggering the submit event on the form
+    wrapper.get("form").trigger("submit");
+    // expect that the spy mock function has been called
+    expect(wrapper.vm.submit).toHaveBeenCalled();
+  });
+
+  test("it should call the event service, after the user has input a title and hit submit", () => {
+    createEvent.mockReset();
+    const wrapper = mount(CreateEvent);
+
+    // User inputs a title
+    wrapper.get("input[name='title']").setValue("Go to the zoo");
+
+    // User hits submit
+    createEvent.mockReturnValue({ data: { title: "", id: 1 } });
+    wrapper.get("form").trigger("submit");
+
+    expect(createEvent).toHaveBeenCalledWith({ title: "Go to the zoo" });
   });
 });
