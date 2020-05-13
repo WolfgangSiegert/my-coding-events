@@ -1,16 +1,20 @@
 <template>
   <div>
     <h1>Dashboard</h1>
-    <div v-for="item in events" :key="item.id">{{ item }}</div>
+    <EventCard v-for="item in events" :key="item.id" :event="item"></EventCard>
   </div>
 </template>
 
 <script>
+import EventCard from "@/components/EventCard.vue";
 import { getEvents } from "../../src/services/event-service.js";
 export default {
+  components: {
+    EventCard,
+  },
   data() {
     return {
-      events: [1, 2, 3, "test"]
+      events: [1, 2, 3, "test"],
     };
   },
   async created() {
@@ -20,7 +24,7 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 };
 </script>
 
