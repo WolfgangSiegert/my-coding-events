@@ -8,6 +8,24 @@
         name="title"
         placeholder="Add a Title"
       />
+      <input
+        v-model="event.date"
+        type="date"
+        name="date"
+        placeholder="Add a Date"
+      />
+      <input
+        v-model="event.details"
+        type="text"
+        name="details"
+        placeholder="What's gonna happen"
+      />
+      <input
+        v-model="event.location"
+        type="text"
+        name="location"
+        placeholder="Add a Location"
+      />
       <input type="submit" value="Create" />
     </form>
   </div>
@@ -21,6 +39,9 @@ export default {
     return {
       event: {
         title: "",
+        details: "",
+        date: "",
+        location: "",
       },
     };
   },
@@ -29,12 +50,27 @@ export default {
       try {
         const res = await createEvent(this.event);
         console.log("Created new event", res.data);
+        this.$router.push({ name: "dashboard" });
       } catch (error) {
-        console.error(error);
+        console.error("My fault. Sorry - " + error);
+        alert(
+          "Oh Sorry. Couldn't insert your entry. Please chek all the input fields"
+        );
       }
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+form {
+  display: grid;
+  gap: 3px;
+  max-width: 450px;
+  max-height: 50px;
+  margin: 0 auto;
+  /*   display: flex;
+  flex-direction: column;
+  align-items: center" */
+}
+</style>
