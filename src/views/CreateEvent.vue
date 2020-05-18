@@ -51,10 +51,11 @@ export default {
         const res = await createEvent(this.event);
         console.log("Created new event", res.data);
         this.$router.push({ name: "dashboard" });
+        this.$store.dispatch("pushNotification", "A new event was created.");
       } catch (error) {
         console.error("My fault. Sorry - " + error);
         alert(
-          "Oh Sorry. Couldn't insert your entry. Please chek all the input fields"
+          "Oh Sorry.\nCouldn't insert your entry.\nPlease check all the input fields"
         );
       }
     },
@@ -67,7 +68,6 @@ form {
   display: grid;
   gap: 3px;
   max-width: 450px;
-  max-height: 50px;
   margin: 0 auto;
   /*   display: flex;
   flex-direction: column;
