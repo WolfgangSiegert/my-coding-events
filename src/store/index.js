@@ -29,7 +29,13 @@ export default new Vuex.Store({
     },
     SET_USER_DATA(state, userData) {
       state.userData = userData;
+      localStorage.setItem("userData", JSON.stringify(userData));
       axios.defaults.headers.common["Authorization"] = `Bearer ${userData.jwt}`;
+    },
+    REMOVE_USER_DATA(state) {
+      state.userData = null;
+      localStorage.removeItem("userData");
+      delete axios.defaults.headers.common["Authorization"];
     },
   },
   actions: {
@@ -73,6 +79,19 @@ export default new Vuex.Store({
             });
           }, 6000);
         });
+    },
+    loadUserData(context) {
+      //check if userdata exists
+      const userDataAsJSONstring = localStorage.getItem("userData");
+      //get the userdata  as a string from local storage
+      if (userDataAsJSONstring) {
+        const userData = JSON.parse(userDataAsJSONstring);
+        //commit a set_user_data mutation to set the UserData variable globaly
+        context.commit("SET_USER_DATA", userData);
+      }
+    },
+    logout(context) {
+      context.commit("REMOVE_USER_DATA");
     },
   },
 });
