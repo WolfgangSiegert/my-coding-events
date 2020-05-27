@@ -3,11 +3,11 @@
     <div v-if="$store.state.userData == null" id="nav">
       <router-link :to="{ name: 'login' }">Login</router-link>
     </div>
-    <!-- <div v-else id="nav"><a href="" @click="logout">Logout</a></div> -->
-    <div v-else id="nav">
+    <div v-else id="nav"><a href="" @click="logout">Logout</a></div>
+    <div v-if="$store.state.userData != null" id="nav">
       <router-link :to="{ name: 'dashboard' }">Dashboard</router-link> |
-      <router-link :to="{ name: 'create-event' }">Create Event</router-link> |
-      <a href="" @click="logout">Logout</a>
+      <router-link :to="{ name: 'create-event' }">Create Event</router-link>
+      <!-- | <a href="" @click="logout">Logout</a> -->
     </div>
     <router-view />
     <div class="notification-container">

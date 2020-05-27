@@ -13,13 +13,18 @@
         type="password"
         name="password"
         placeholder="Set Your Password"
+        @blur="$v.user.password.touch()"
       />
+      <div v-if="$v.user.password.$error" class="error">
+        Password is required
+      </div>
       <button type="submit">Send Login Data</button>
     </form>
   </div>
 </template>
 
 <script>
+import { required, email, minLength } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -31,6 +36,10 @@ export default {
   },
   methods: {
     async submit() {
+      this.$v.touch();
+      //   {
+      //       return
+      //   };
       try {
         console.log("submit message: " + this.user);
         await this.$store.dispatch("login", this.user);
@@ -42,6 +51,12 @@ export default {
           message: "Login went wrong. Please check your input.",
         });
       }
+    },
+  },
+  validations: {
+    user: {
+      email: { required, email },
+      password: { required, minLength },
     },
   },
 };
