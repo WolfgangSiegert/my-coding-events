@@ -22,11 +22,11 @@
       "location": "https://zoom.us/j/861156*454"
     },
     {
-      "title": "PUTed  Event",
-      "description": "put freshest new event ever",
-      "date": "04/01/2022 00:00",
-      "location": "PUT it in the streets 2",
-      "id": 4
+      "id": 4,
+      "title": "Code & Cook",
+      "details": "Please bring creative recips",
+      "date": "12/07/2020 18:00",
+      "location": "Basislager Coworking, Peterssteinweg 14, Leipzig"
     },
     {
       "id": 5,
@@ -58,21 +58,21 @@
     },
     {
       "id": 9,
-      "title": "Code & Cock edition #1",
+      "title": "Code & Cook edition #1",
       "details": "Please bring Softeis!",
       "date": "05/25/2020 19:00",
       "location": "Gabe's personal Zoom room"
     },
     {
       "id": 10,
-      "title": "Code & Cock edition #2",
+      "title": "Code & Cook edition #2",
       "details": "Please bring Frikassee!",
       "date": "05/26/2020 19:00",
       "location": "Basislager Coworking, Peterssteinweg 14, Leipzig"
     },
     {
       "id": 11,
-      "title": "Code & Cock edition #3",
+      "title": "Code & Cook edition #3",
       "details": "Please bring halbes Schwein auf Toast!",
       "date": "05/28/2020 19:00",
       "location": "At Taylor's place"
@@ -218,11 +218,193 @@
       "location": "https://what3words.com/gr%C3%BCn.nahm.studenten"
     },
     {
-      "id": 444,
-      "title": "Newly posted Event",
-      "description": "freshest new event ever",
-      "date": "04/01/2020 00:00",
-      "location": "in the streets"
+      "title": "asdf",
+      "details": "asdf",
+      "location": "asdf",
+      "date": "2020-05-13",
+      "id": 32
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 33
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 34
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 35
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 36
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 37
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 38
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 39
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 40
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 41
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 42
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 43
+    },
+    {
+      "title": "asdf",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 44
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 45
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 46
+    },
+    {
+      "title": "asdf",
+      "details": "asdf",
+      "location": "asdf",
+      "date": "2020-05-14",
+      "id": 47
+    },
+    {
+      "title": "asdf",
+      "details": "asdf",
+      "location": "",
+      "date": "",
+      "id": 48
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 49
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 50
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 51
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 52
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 53
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 54
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 55
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 56
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 57
+    },
+    {
+      "title": "",
+      "details": "",
+      "location": "",
+      "date": "",
+      "id": 58
     }
   ]
 }

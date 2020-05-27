@@ -1,6 +1,7 @@
-import { mount } from "@vue/test-utils";
+import { mount, createLocalVue } from "@vue/test-utils";
 import CreateEvent from "@/views/CreateEvent.vue";
 import { createEvent } from "@/services/event-service.js";
+import Vuex from "vuex";
 
 // Jest wizardry
 jest.mock("@/services/event-service.js");
@@ -30,10 +31,10 @@ describe("CreateEvent", () => {
     expect(wrapper.contains("input[name='title'][type='text']")).toBe(true);
   });
 
-  test("it should contain a submit button with the value Create", () => {
+  test("it should contain a submit button with the text content Create", () => {
     const wrapper = mount(CreateEvent);
 
-    expect(wrapper.contains("input[value='Create'][type='submit']")).toBe(true);
+    expect(wrapper.get("button").text()).toBe("Create");
   });
 
   test("it should contain an input field for the title with the placeholder 'Add a Title'", () => {
@@ -48,7 +49,10 @@ describe("CreateEvent", () => {
     const wrapper = mount(CreateEvent);
 
     expect(wrapper.vm.event).toEqual({
-      title: ""
+      title: "",
+      location: "",
+      details: "",
+      date: "",
     });
   });
 
@@ -82,15 +86,41 @@ describe("CreateEvent", () => {
 
   test("it should call the event service, after the user has input a title and hit submit", () => {
     createEvent.mockReset();
-    const wrapper = mount(CreateEvent);
+    const localVue = createLocalVue();
+    localVue.use(Vuex);
+
+    const store = new Vuex.Store({
+      actions: {
+        pushNotification: jest.fn(),
+      },
+    });
+    const wrapper = mount(CreateEvent, {
+      localVue,
+      store,
+      mocks: {
+        $router: {
+          push: jest.fn(),
+        },
+      },
+    });
 
     // User inputs a title
     wrapper.get("input[name='title']").setValue("Go to the zoo");
+    wrapper.get("input[name='location']").setValue("Zoo");
+    wrapper.get("input[name='date']").setValue("2020-05-14");
+    wrapper.get("input[name='details']").setValue("Details");
 
     // User hits submit
-    createEvent.mockReturnValue({ data: { title: "", id: 1 } });
+    createEvent.mockReturnValue({
+      data: { title: "", location: "", date: "", details: "", id: 1 },
+    });
     wrapper.get("form").trigger("submit");
 
-    expect(createEvent).toHaveBeenCalledWith({ title: "Go to the zoo" });
+    expect(createEvent).toHaveBeenCalledWith({
+      title: "Go to the zoo",
+      details: "Details",
+      location: "Zoo",
+      date: "2020-05-14",
+    });
   });
 });
