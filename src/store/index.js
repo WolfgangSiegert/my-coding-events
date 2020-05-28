@@ -61,7 +61,7 @@ export default new Vuex.Store({
       context.commit("SET_USER_DATA", res.data);
     },
     async login(context, { email, password }) {
-      console.log("login", email, password);
+      //console.log("login", email, password); //diff deploy TODO
 
       // Make a POST request to /auth/local
       const res = await axios.post(
